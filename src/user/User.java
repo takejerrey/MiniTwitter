@@ -11,30 +11,28 @@ public class User extends user.UserComponent implements Observer {
     private static List<User> allUsers = new ArrayList<>();
     private static int userTotal = 0;
     private UserView curUserView;
-    private List<User> followers;
     private List<User> followings;
+    private List<User> followers;
     private PostedTweets tweetsPosted;
     private Map<String, Tweet> feed;
 
     public User(String id) {
         super(id);
-        allUsers.add(this);
-        followers = new ArrayList<>();
-        followings = new ArrayList<>();
-        tweetsPosted = new PostedTweets();
         feed = new HashMap<>();
+        allUsers.add(this);
+        followings = new ArrayList<>();
+        followers = new ArrayList<>();
+        tweetsPosted = new PostedTweets();
         follow(this);
     }
 
     public static User getUserById(String id) {
         User foundUser = null;
-
         for(User user : allUsers) {
             if(foundUser == null && user.getId().equals(id)) {
                 foundUser = user;
             }
         }
-
         return foundUser;
     }
 
@@ -66,7 +64,6 @@ public class User extends user.UserComponent implements Observer {
     }
 
     public void post(Tweet tweet) {
-
         tweetsPosted.post(tweet);
     }
 

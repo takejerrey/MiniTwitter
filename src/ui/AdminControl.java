@@ -22,8 +22,6 @@ public class AdminControl extends JFrame {
     private JButton btnAddUser;
     private JButton btnAddGroup;
     private JButton btnOpenUserView;
-    private JButton btnValidateIds;
-    private JButton btnLastUpdatedUser;
     private JButton btnShowUserTotal;
     private JButton btnShowGroupTotal;
     private JButton btnShowMessagesTotal;
@@ -99,8 +97,8 @@ public class AdminControl extends JFrame {
 
         // Set up tree view panel
         treePanel = new JPanel();
-        treePanel.setLayout(new BoxLayout(treePanel, BoxLayout.PAGE_AXIS));
         Color treePanelColor = new Color(210, 250, 250);
+        treePanel.setLayout(new BoxLayout(treePanel, BoxLayout.PAGE_AXIS));
         treePanel.setBackground(treePanelColor);
         this.add(treePanel);
         drawTree();
@@ -166,6 +164,7 @@ public class AdminControl extends JFrame {
 
 
 
+    // Singleton Instance
     public static AdminControl getInstance() {
         if(instance == null) {
             instance = new AdminControl();
@@ -174,18 +173,18 @@ public class AdminControl extends JFrame {
         return instance;
     }
 
+    //Bind user view
     public void enableUserView() {
         btnOpenUserView.setEnabled(true);
     }
 
+    //Unbind user view
     public void disableUserView() {
         btnOpenUserView.setEnabled(false);
     }
 
     // Add a UserComponent to a UserGroup
     private void addToGroup(UserComponent componentToAdd) {
-        // If a UserGroup is selected, add the UserComponent to the currently
-        // selected group. Otherwise, add it to the root group
         if(curUserSelected instanceof UserGroup) {
             ((UserGroup) curUserSelected).add(componentToAdd);
         }
@@ -197,6 +196,7 @@ public class AdminControl extends JFrame {
         componentToAdd.accept(analysisVisitor);
     }
 
+    // Output the List of users and groups
     public void drawTree() {
         treePanel.removeAll();
         JLabel treeLabel = new JLabel("Tree View");
