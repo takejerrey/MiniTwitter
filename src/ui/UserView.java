@@ -115,6 +115,17 @@ public class UserView extends JFrame {
         drawInfo();
         this.add(infoPanel);
 
+        JPanel creationTimePanel = new JPanel();
+        creationTimePanel.setBackground(backgroundColor);
+        displayCreationTime(creationTimePanel);
+        infoPanel.add(creationTimePanel);
+
+
+        JPanel lastUpdateTimePanel = new JPanel();
+        lastUpdateTimePanel.setBackground(backgroundColor);
+        displayLastUpdateTime(lastUpdateTimePanel);
+        infoPanel.add(lastUpdateTimePanel);
+
         // Set up follow display panel
         followDisplayPanel = new JPanel();
         followDisplayPanel.setBackground(backgroundColor);
@@ -176,6 +187,20 @@ public class UserView extends JFrame {
         }
         feedPanel.revalidate();
         feedPanel.repaint();
+    }
+
+    private void displayCreationTime(JPanel panel) {
+        JLabel creationTimeLabel = new JLabel("Creation Time: " + user.getCreationTime());
+        panel.add(creationTimeLabel);
+        panel.revalidate();
+        panel.repaint();
+    }
+
+    private void displayLastUpdateTime(JPanel panel) {
+       JLabel lastUpdateTimeLabel = new JLabel("Last Update Time: " + user.getLastUpdateTime());
+        panel.add(lastUpdateTimeLabel);
+        panel.revalidate();
+        panel.repaint();
     }
 
     public void drawFollowing(List<User> followings) {

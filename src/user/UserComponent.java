@@ -20,11 +20,16 @@ public abstract class UserComponent implements Node {
     // Spacing to add to start of label for UserComponent in tree view
     protected static int spacing = 0;
 
+
     private String id;
     private JLabel label;
 
     public UserComponent(String id) {
         setId(id);
+    }
+
+    public String getID(){
+        return id;
     }
 
     // Returns true if all IDs (Users and UserGroups) are valid, false otherwise

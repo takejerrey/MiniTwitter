@@ -9,13 +9,25 @@ import java.util.List;
 public class UserGroup extends user.UserComponent {
 
     private static int groupTotal = 1; // Initialized to 1 to account for root group
+    private long creationTime;
 
     private List<user.UserComponent> userComponents;
 
+    public long getCreationTime() {
+        return creationTime;
+    }
     public UserGroup(String id) {
         super(id);
-
+        this.creationTime = System.currentTimeMillis();
         userComponents = new ArrayList<>();
+    }
+
+    public String getGroupID(){
+        return getID();
+    }
+
+    public List<user.UserComponent> getComponents(){
+        return userComponents;
     }
 
     public static int getGroupTotal() {

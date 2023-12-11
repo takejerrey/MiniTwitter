@@ -15,6 +15,10 @@ public class User extends user.UserComponent implements Observer {
     private List<User> followers;
     private PostedTweets tweetsPosted;
     private Map<String, Tweet> feed;
+    private long creationTime;
+    private long lastUpdateTime;
+    private static User lastUpdatedUser;
+
 
     public User(String id) {
         super(id);
@@ -23,7 +27,21 @@ public class User extends user.UserComponent implements Observer {
         followings = new ArrayList<>();
         followers = new ArrayList<>();
         tweetsPosted = new PostedTweets();
+        this.creationTime = System.currentTimeMillis(); // Set creation time
         follow(this);
+    }
+    public static User getLastUpdatedUser() {
+        return lastUpdatedUser;
+    }
+    public long getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public long getCreationTime() {
+        return creationTime;
+    }
+    public String getUserID(){
+        return getId();
     }
 
     public static User getUserById(String id) {
@@ -101,6 +119,10 @@ public class User extends user.UserComponent implements Observer {
         }
         curUserView.drawInfo();
         curUserView.drawFeed(getOrderedFeedMessages());
+        lastUpdateTime = System.currentTimeMillis(); // Update lastUpdateTime
+        lastUpdatedUser = this;
+
+
     }
 
     @Override
