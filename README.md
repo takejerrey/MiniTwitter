@@ -1,0 +1,1 @@
+This program runs a local, basic, simulation of twitter. It uses JSwing for graphics. Implementing several Object Oriented Design Principles, such as Singleton Instances, Observers, Visitors, and Composition. 
